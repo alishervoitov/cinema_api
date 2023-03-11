@@ -1,3 +1,6 @@
 from django.contrib import admin
+from cinema.models import Actor, Category
 
-# Register your models here.
+admin.site.register(Actor)
+admin.site.register(Category)
+
