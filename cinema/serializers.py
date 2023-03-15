@@ -6,4 +6,9 @@ class MovieListSerializer(serializers.ModelSerializer):
     fields = [
         'title',
         'tagline',
+        'category',
     ]
+
+class MovieDetailSerializer(serializers.ModelSerializer):
+    model = Movie
+    exclude = ('draft',)
