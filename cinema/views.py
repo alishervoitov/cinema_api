@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from cinema.models import Movie
 from rest_framework.views import APIView
-from cinema.serializers import MovieListSerializer, MovieDetailSerializer
+from cinema.serializers import MovieListSerializer, MovieDetailSerializer, ReviewSerializer
 from rest_framework.response import Response
 class MovieListView(APIView):
 
@@ -18,3 +18,11 @@ class MovieDetailView(APIView):
         movie = Movie.objects.get(id=pk, draft=False)
         serializer = MovieDetailSerializer(movie)
         return Response(serializer.data)
+
+class ReviewCreateView(APIView):
+
+    def post(self, request):
+        review = ReviewSerializer(request.data)
+        if review.is_valid():
+            review.save()
+        return Response(status=201)
